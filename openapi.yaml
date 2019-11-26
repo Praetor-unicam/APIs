@@ -28,6 +28,23 @@ components:
       items:
         $ref: '#/components/schemas/Endpoint'
         
+    Crime:
+      description: Model containing a specific crime's info in one year.
+      type: object
+      properties:
+        crime:
+          type: string
+          description: Name of the crime.
+          example: Robbery
+        year:
+          type: integer
+          description: Year of reference.
+          example: 2019
+        n_crimes:
+          type: integer
+          description: Number of crime's occurrencies in the specified year.
+          example: 54
+        
     Data:
       description: Crime data of a country.
       type: object
@@ -35,12 +52,10 @@ components:
         country:
           type: string
           example: Luxembourg
-        crime_type:
-          type: string
-          example: Robbery
-        stats:
-          type: integer
-          example: 54
+        crimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Crime'
 
     
 paths:
@@ -62,10 +77,10 @@ paths:
       parameters:
         - in: path
           name: country
+          description: The name of the country.
           required: true
           schema:
             type: string
-            description: The name of the country.
             example: Luxembourg
       responses:
         200:
@@ -75,10 +90,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Endpoint'
                 
-  /data/{country}:
+  /data/{year}/{country}:
     get:
       description: Gets data for the specified country.
       parameters: 
+        - in: path
+          name: year
+          required: true
+          schema:
+            type: integer
+            description: Year.
+            example: 2019
         - in: path
           name: country
           required: true
