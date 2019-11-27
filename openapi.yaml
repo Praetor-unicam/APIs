@@ -59,7 +59,7 @@ components:
 
     
 paths:
-  /endpoints:
+  /api/endpoints:
     get:
       description: Gets the status of all countries' endpoints.
       
@@ -71,7 +71,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Endpoints'
 
-  /endpoints/{country}:
+  /api/endpoints/{country}:
     get:
       description: Gets the status of a specific country's data endpoints.
       parameters:
@@ -90,7 +90,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Endpoint'
                 
-  /data/{year}/{country}:
+  /api/data/{year}/{country}:
     get:
       description: Gets data for the specified country.
       parameters: 
@@ -117,7 +117,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Data'
                 
-  /years/{country}:
+  /api/years/{country}:
     get:
       description: Gets available years for a selected country.
       parameters:
@@ -140,7 +140,7 @@ paths:
                 items:
                   type: integer
                   
-  /countries:
+  /api/countries:
     get:
       description: Gets a list of all available countries.
       
@@ -155,7 +155,7 @@ paths:
                 items:
                   type: string
                   
-  /countries/{country}:
+  /api/countries/{country}:
     get:
       description: Gets a list of all available regions of a given country.
       parameters: 
